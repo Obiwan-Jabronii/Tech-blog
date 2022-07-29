@@ -7,10 +7,11 @@ router.get('/', (req, res) => {
     Post.findAll({
       attributes: [
         'id',
-        'post_url',
+        'post_body',
         'title',
         'created_at',
       ],
+      order: [[ 'created_at', 'DESC']],
       include: [
         {
             model: User,
@@ -42,7 +43,7 @@ router.get('/', (req, res) => {
       },
       attributes: [
         'id',
-        'post_url',
+        'post_body',
         'title',
         'created_at'
       ],
@@ -78,7 +79,7 @@ router.get('/', (req, res) => {
     Post.create({
       title: req.body.title,
       post_body: req.body.post_body,
-      user_id: req.session.user_id
+      user_id: req.body.user_id
     })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {

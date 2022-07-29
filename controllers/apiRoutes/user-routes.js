@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
           attributes: [
               'id',
               'title',
-              'post_url',
+              'post_body',
               'created_at'
           ]
         },
@@ -41,10 +41,10 @@ router.get('/:id', (req, res) => {
           include: {
             model: User,
             attributes: ['username']
+          }
         }
-      }
-    ]
-})
+      ]
+    })
     .then(dbUserData => {
       if (!dbUserData) {
         res.status(404).json({ message: 'No user found.' });
@@ -61,7 +61,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     User.create({
       username: req.body.username,
-      email: email.req.body.email,
+      email: req.body.email,
       password: req.body.password
     })
     .then(dbUserData => {
