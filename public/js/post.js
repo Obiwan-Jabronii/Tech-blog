@@ -1,5 +1,5 @@
-const title = document.querySelector('input[name="post_title"]').value;
-const body = document.querySelector('textarea[name="post_body"]').value;
+const title = document.querySelector('input[name="post-title"]').value;
+const post_body = document.querySelector('textarea[name="post-body"]').value;
 
 const postFormHandler = async function(event) {
     event.preventDefault();
@@ -8,7 +8,7 @@ const postFormHandler = async function(event) {
       method: "POST",
       body: JSON.stringify({
         title,
-        body
+        post_body
       }),
       headers: {
         "Content-Type": "application/json"
@@ -18,5 +18,5 @@ const postFormHandler = async function(event) {
     document.location.replace("/dashboard");
   };
   
-document.querySelector("#post_form").addEventListener("submit", postFormHandler);
+document.querySelector(".new-post-form").addEventListener("submit", postFormHandler);
   
