@@ -49,14 +49,6 @@ router.get('/', (req, res) => {
       ],
       include: [
         {
-          model: Comment,
-          attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-          include: {
-            model: User,
-            attributes: ['username']
-          }
-        },
-        {
           model: User,
           attributes: ['username']
         }
@@ -79,7 +71,7 @@ router.get('/', (req, res) => {
     Post.create({
       title: req.body.title,
       post_body: req.body.post_body,
-      user_id: req.body.user_id
+      user_id: req.session.user_id
     })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
